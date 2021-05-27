@@ -9,24 +9,23 @@ from dictCLI import core
 
 def main() -> None:
     commands: dict = CONFIG["commands"]
+    mode = "search"
 
     while (True):
+        print(f"{mode}:>", end=" ")
         inp: str = input()
-        mode = str()
         if len(inp) > 0 and inp[0] == ':':
             mode = get_mode(inp, commands)
         elif mode == "search":
-            print('search mode')
-            core.pretty_print(core.get_meaning(inp))
+            search_mode(inp)
         elif mode == "flip":
-            print('flip mode')
             flip_mode(inp, commands["flip"])
         else:
             print("Invalid query or command")
             print_usage()
 
 
-def get_mode(inp, commands):
+def get_mode(inp: str, commands: dict) -> str:
     cmd: str = inp[1:]
     mode: str = "search"
     if cmd in commands["help"]:
@@ -40,6 +39,17 @@ def get_mode(inp, commands):
     else:
         print('Not a valid command')
     return mode
+
+
+def search_mode(inp: str) -> None:
+    if inp == '/b':
+        bookmark()
+    meaning = core.get_meaning(inp)
+    core.pretty_print(meaning)
+
+
+def bookmark():
+    pass
 
 
 def flip_mode(inp: str, commands: dict) -> None:
@@ -65,7 +75,7 @@ Commands:
 
 
 def print_usage() -> None:
-    pass
+    print_help()
 
 
 if __name__ == "__main__":

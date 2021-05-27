@@ -9,15 +9,6 @@ from dictCLI import main
 
 class TestModes(unittest.TestCase):
     def setUp(self) -> None:
-        self.help: str = '''
-Modes:
-    Search        'search', 's'
-    Flip          'flip', 'f'
-
-Commands: 
-    Help          'help', 'h'
-    Quit          'quit', 'q'
-'''
         self.commands: dict = CONFIG["commands"]
         self.mode_search1 = main.get_mode(':s', self.commands)
         self.mode_search2 = main.get_mode(':search', self.commands)
@@ -39,11 +30,6 @@ Commands:
     def test_flip(self):
         self.assertEqual(self.mode_flip1, 'flip')
         self.assertEqual(self.mode_flip2, 'flip')
-
-    @patch('sys.stdout', new_callable=io.StringIO)
-    def test_help(self, mock_stdout):
-        main.get_mode(':help', self.commands)
-        assert mock_stdout.getvalue() == self.help
 
 
 if __name__ == "__main__":
