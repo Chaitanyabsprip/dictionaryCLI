@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from english import core
+from dictCLI import core
 
 
 class TestEnglish(unittest.TestCase):

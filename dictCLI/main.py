@@ -1,9 +1,10 @@
 #! /usr/bin/python3
 # TODO : cross-platform she-bang!
+
 import sys
 
 from config import CONFIG
-from english import core
+from dictCLI import core
 
 
 def main() -> None:
@@ -12,23 +13,33 @@ def main() -> None:
     while (True):
         inp: str = input()
         mode = str()
-        if inp[0] == ':':
-            cmd: str = inp
-            if cmd in commands["help"]:
-                print_help()
-            elif cmd in commands["quit"]:
-                exit()
-            elif cmd[:2] in commands["search"]:
-                mode = "search"
-            elif cmd == "flip":
-                mode = "flip"
+        if len(inp) > 0 and inp[0] == ':':
+            mode = get_mode(inp, commands)
         elif mode == "search":
+            print('search mode')
             core.pretty_print(core.get_meaning(inp))
         elif mode == "flip":
+            print('flip mode')
             flip_mode(inp, commands["flip"])
         else:
             print("Invalid query or command")
             print_usage()
+
+
+def get_mode(inp, commands):
+    cmd: str = inp[1:]
+    mode: str = "search"
+    if cmd in commands["help"]:
+        print_help()
+    elif cmd in commands["quit"]:
+        sys.exit(1)
+    elif cmd in commands["search"]:
+        mode = "search"
+    elif cmd in commands["flip"]:
+        mode = "flip"
+    else:
+        print('Not a valid command')
+    return mode
 
 
 def flip_mode(inp: str, commands: dict) -> None:
