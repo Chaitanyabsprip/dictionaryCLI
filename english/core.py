@@ -23,8 +23,15 @@ def cache_meaning(word_meaning, file):
 
 
 def pretty_print(meaning_json):
-    for parts_of_speech in meaning_json["definitions"]:
-        print(f'Part of speech: {parts_of_speech["partOfSpeech"]}')
-        meanings = parts_of_speech["text"]
-        for i in range(1, len(meanings)):
-            print(f'\t{meanings[i]}')
+    for definition in meaning_json['definitions']:
+
+        print(f"{'-'*20}")
+        print(f"{definition['partOfSpeech'].title()}:")
+        for n,meaning in enumerate(definition['text']):
+            print(f"\t{n}. {meaning}")
+
+        for related_words in definition['relatedWords']:
+            print(related_words['relationshipType'])
+            for words in related_words['words']:
+                pass
+
