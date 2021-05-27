@@ -1,0 +1,58 @@
+[
+  {
+    "etymology": "From Middle English anger (“grief, pain, trouble, affliction, vexation, sorrow, wrath”), from Old Norse angr, ǫngr (“affliction, sorrow”) (compare Old Norse ang, ǫng (“troubled”)), from Proto-Germanic *angazaz (“grief, sorrow”), from Proto-Indo-European *h₂enǵʰ- (“narrow, tied together”). Cognate with Danish anger (“regret, remorse”), Norwegian Bokmål anger (“regret, remorse”), Swedish ånger (“regret”), Icelandic angur (“trouble”), Old English ange, enge (“narrow, close, straitened, constrained, confined, vexed, troubled, sorrowful, anxious, oppressive, severe, painful, cruel”), Dutch anjer (“carnation”), German Angst (“anxiety, anguish, fear”), Latin angō (“squeeze, choke, vex”), Albanian ang (“fear, anxiety, pain, nightmare”), Avestan angra (angra, “destructive”), Ancient Greek ἄγχω (ánkhō, “I squeeze, strangle”), Sanskrit अंहु (aṃhu, “anxiety, distress”). Also compare with English anguish, anxious, quinsy, and perhaps to awe and ugly. The word seems to have originally meant “to choke, squeeze”.The verb is from Middle English angren, angeren, from Old Norse angra. Compare with Icelandic angra, Norwegian Nynorsk angra, Norwegian Bokmål angre, Swedish ångra, Danish angre.\n",
+    "definitions": [
+      {
+        "partOfSpeech": "noun",
+        "text": [
+          "anger (countable and uncountable, plural angers)",
+          "A strong feeling of displeasure, hostility or antagonism towards someone or something, usually combined with an urge to harm.",
+          "(obsolete) Pain or stinging."
+        ],
+        "relatedWords": [
+          {
+            "relationshipType": "synonyms",
+            "words": ["See also Thesaurus:anger"]
+          },
+          {
+            "relationshipType": "related terms",
+            "words": ["anguish", "anxiety", "anxious"]
+          }
+        ],
+        "examples": [
+          "Seeing the British establishment struggle with the financial sector is like watching an alcoholic[…]. Until 2008 there was denial over what finance had become. When a series of bank failures made this impossible, there was widespread anger, leading to the public humiliation of symbolic figures.",
+          "You need to control your anger.",
+          "It heals the Wounds that Sin hath made; and takes away the Anger of the Sore;  […]",
+          "I immediately made the Experiment, ſetting the Moxa where the firſt Violence of my Pain began, which was the Joint of the great Toe, and where the greateſt Anger and Soreneſs ſtill continued, [...]"
+        ]
+      },
+      {
+        "partOfSpeech": "verb",
+        "text": [
+          "anger (third-person singular simple present angers, present participle angering, simple past and past participle angered)",
+          "(transitive) To cause such a feeling of antagonism in.",
+          "(intransitive) To become angry."
+        ],
+        "relatedWords": [
+          {
+            "relationshipType": "synonyms",
+            "words": [
+              "(to cause anger): enrage, infuriate; annoy, vex, grill, displease; aggravate, irritate",
+              "(to become angry): get angry (see angry for more)"
+            ]
+          }
+        ],
+        "examples": ["He who angers you conquers you.", "You anger too easily."]
+      }
+    ],
+    "pronunciations": {
+      "text": [
+        "(UK) IPA: /ˈæŋɡə(ɹ)/",
+        "(US) IPA: /ˈæŋɡɚ/",
+        "Rhymes: -æŋɡə(ɹ)",
+        "Hyphenation: an‧ger"
+      ],
+      "audio": ["//upload.wikimedia.org/wikipedia/commons/d/dc/En-us-anger.ogg"]
+    }
+  }
+]
