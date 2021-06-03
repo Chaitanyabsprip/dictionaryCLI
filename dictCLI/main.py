@@ -6,13 +6,12 @@ import sys
 from config import CONFIG
 from dictCLI import core
 
-
 def main() -> None:
     commands: dict = CONFIG["commands"]
     mode = "search"
 
     while (True):
-        print(f"{mode}:>", end=" ")
+        print(f"{mode}>", end=" ")
         inp: str = input()
         if len(inp) > 0 and inp[0] == ':':
             mode = get_mode(inp, commands)
@@ -64,12 +63,12 @@ def flip_mode(inp: str, commands: dict) -> None:
 def print_help() -> None:
     help: str = '''
 Modes:
-    Search        'search', 's'
-    Flip          'flip', 'f'
+    Search        ':search', ':s'
+    Flip          ':flip', ':f' 
 
 Commands: 
-    Help          'help', 'h'
-    Quit          'quit', 'q'
+    Help          ':help', ':h'
+    Quit          ':quit', ':q'
     '''
     print(help)
 
