@@ -33,11 +33,17 @@ def pretty_print(meaning_json: dict) -> None:
 
 
 def search_mode(inp: str) -> None:
-    if inp == '/b':
-        bookmark()
-    meaning = get_meaning(inp)
+    # BOOKMARK
+    # if inp == '/b':
+        # bookmark(get_history(-1))
+        # print(f'{inp} has been bookmarked \n')
+        # return 
+    meaning = cache.get_cached_meaning(inp)
+    if not meaning: 
+        meaning = get_meaning(inp)
+        cache.cache_meaning(meaning,inp)
+        cache.add_to_history(inp)
     pretty_print(meaning)
-
 
 def flip_mode(inp: str, commands: dict) -> None:
     if inp in commands["randomize"]:
