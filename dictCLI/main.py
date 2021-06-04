@@ -17,7 +17,7 @@ def main() -> None:
         elif mode == "search":
             core.search_mode(inp)
         elif mode == "flip":
-            core.flip_mode(inp, commands["flip"])
+            core.flip_mode(inp, commands["inflip"])
         else:
             print("Invalid query or command")
             utils.print_usage()
