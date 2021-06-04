@@ -2,6 +2,7 @@ from dictCLI import cache,core
 import unittest 
 import json 
 import os 
+
 class TestCache(unittest.TestCase):
     def setUp(self):
         self.data_dir = cache.get_data_dir()
@@ -15,7 +16,7 @@ class TestCache(unittest.TestCase):
         test_json = {'testkey':'testvalue'}
         cache.cache_meaning(test_json,'test_word')
         filepath = os.path.join(self.data_dir,'word_cache','test_word.json')
-        self.assertTrue( os.path.isfile(filepath))
+        self.assertTrue(os.path.isfile(filepath))
 
         with open(filepath) as f:
             self.assertDictEqual(test_json,json.load(f))

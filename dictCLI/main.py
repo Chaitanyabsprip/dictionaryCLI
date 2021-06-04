@@ -4,8 +4,10 @@
 import sys
 
 from config import CONFIG
-from dictCLI import core
-
+from dictCLI import core,cache
+# cache = cache.Cache(callingmodule='main')
+# cache = cache.Cache()
+# from dictCLI.cache import Cache as cache
 def main() -> None:
     commands: dict = CONFIG["commands"]
     mode = "search"
@@ -41,11 +43,17 @@ def get_mode(inp: str, commands: dict) -> str:
 
 
 def search_mode(inp: str) -> None:
-    if inp == '/b':
-        bookmark()
-    meaning = core.get_meaning(inp)
+    # BOOKMARK
+    # if inp == '/b':
+        # bookmark(get_history(-1))
+        # print(f'{inp} has been bookmarked \n')
+        # return 
+    meaning = cache.get_cached_meaning(inp)
+    if not meaning: 
+        meaning = core.get_meaning(inp)
+        cache.cache_meaning(meaning,inp)
     core.pretty_print(meaning)
-
+    core.add_to_history()
 
 def bookmark():
     pass
