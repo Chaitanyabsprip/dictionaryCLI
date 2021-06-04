@@ -1,12 +1,12 @@
 import json
 import unittest
 
-from dictCLI import core
+from dictCLI import cache, core
 
 
 class TestEnglish(unittest.TestCase):
     def setUp(self) -> None:
-        self.result = core.get_meaning('hello')
+        self.result = core.fetch_meaning('hello')
         with open('test/fixtures/hello.json') as f:
             self.hello_meaning = json.load(f)[0]
 
@@ -20,7 +20,7 @@ class TestEnglish(unittest.TestCase):
 
     def test_cache_meaning(self):
         file = '/home/chaitanya/.cache/english/favorites.json'
-        core.cache_meaning(self.result, file)
+        cache.cache_meaning(self.result, file)
         with open(file) as f:
             cached_meaning = json.load(f)
         self.assertEqual(self.result, cached_meaning)

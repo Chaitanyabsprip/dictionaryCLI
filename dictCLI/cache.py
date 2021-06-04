@@ -4,10 +4,14 @@ import platform
 
 
 def get_data_dir() -> str:
-    return {
+    dir_path: str = {
         'Windows': os.path.join(os.environ.get('LOCALAPPDATA', ''), 'dictCLI'),
-        'Linux': os.path.join(os.environ.get('HOME', ''), '.cache/dictCLI'),
+        'Linux': os.path.join(os.environ.get('HOME', ''), '.cache', 'dictCLI'),
     }[str(platform)]
+    if not os.path.exists(dir_path):  # TODO: refactor this to setup.py
+        os.mkdir(dir_path)
+        os.mkdir(os.path.join(dir_path, 'word_cache'))
+    return dir_path
 
 
 def cache_meaning(word_json, word):
@@ -17,7 +21,7 @@ def cache_meaning(word_json, word):
 
 
 def add_to_history(word):
-    with open(os.path.join(get_data_dir(), 'history.txt'), 'a') as history:
+    with open(os.path.join(data_dir, 'history.txt'), 'a') as history:
         history.write(f'{word} \n')
 
 

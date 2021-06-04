@@ -2,7 +2,7 @@
 # TODO : cross-platform she-bang!
 
 from config import CONFIG
-from dictCLI import core, utils
+from dictCLI import core, util
 
 
 def main() -> None:
@@ -10,19 +10,19 @@ def main() -> None:
     mode = "search"
 
     while (True):
-        print(f"{mode}>", end=" ")
+        print(f"{mode} >", end=" ")
         inp: str = input()
         if len(inp) > 0 and inp[0] == ':':
-            mode: str = utils.get_mode(inp, commands)
+            mode: str = util.get_mode(inp, commands)
         elif mode == "search":
             core.search_mode(inp)
         elif mode == "flip":
             core.flip_mode(inp, commands["inflip"])
         else:
             print("Invalid query or command")
-            utils.print_usage()
+            util.print_usage()
 
 
 if __name__ == "__main__":
-    utils.print_usage()
+    util.print_usage()
     main()

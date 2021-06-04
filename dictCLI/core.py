@@ -1,5 +1,3 @@
-import os
-
 from wiktionaryparser import WiktionaryParser
 
 from dictCLI import cache
@@ -7,7 +5,7 @@ from dictCLI import cache
 PARSER = WiktionaryParser()
 
 
-def get_meaning(word: str) -> dict:
+def fetch_meaning(word: str) -> dict:
     """
         Returns the meaning of the query `@word`
     """
@@ -33,17 +31,18 @@ def pretty_print(meaning_json: dict) -> None:
 
 
 def search_mode(inp: str) -> None:
-    # BOOKMARK
+    # TODO: BOOKMARK
     # if inp == '/b':
-        # bookmark(get_history(-1))
-        # print(f'{inp} has been bookmarked \n')
-        # return 
+    # bookmark(get_history(-1))
+    # print(f'{inp} has been bookmarked \n')
+    # return
     meaning = cache.get_cached_meaning(inp)
-    if not meaning: 
-        meaning = get_meaning(inp)
-        cache.cache_meaning(meaning,inp)
+    if not meaning:
+        meaning = fetch_meaning(inp)
+        cache.cache_meaning(meaning, inp)
         cache.add_to_history(inp)
     pretty_print(meaning)
+
 
 def flip_mode(inp: str, commands: dict) -> None:
     if inp in commands["randomize"]:

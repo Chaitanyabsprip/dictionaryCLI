@@ -1,26 +1,23 @@
-import io
 import unittest
-from unittest import mock
-from unittest.mock import patch
 
 from config import CONFIG
-from dictCLI import main
+from dictCLI import util
 
 
 class TestModes(unittest.TestCase):
     def setUp(self) -> None:
         self.commands: dict = CONFIG["commands"]
-        self.mode_search1 = main.get_mode(':s', self.commands)
-        self.mode_search2 = main.get_mode(':search', self.commands)
-        self.mode_flip1 = main.get_mode(':f', self.commands)
-        self.mode_flip2 = main.get_mode(':flip', self.commands)
+        self.mode_search1 = util.get_mode(':s', self.commands)
+        self.mode_search2 = util.get_mode(':search', self.commands)
+        self.mode_flip1 = util.get_mode(':f', self.commands)
+        self.mode_flip2 = util.get_mode(':flip', self.commands)
 
     def test_quit(self):
         with self.assertRaises(SystemExit) as cm:
-            main.get_mode(':q', self.commands)
+            util.get_mode(':q', self.commands)
         self.assertEqual(cm.exception.code, 1)
         with self.assertRaises(SystemExit) as cm:
-            main.get_mode(':quit', self.commands)
+            util.get_mode(':quit', self.commands)
         self.assertEqual(cm.exception.code, 1)
 
     def test_search(self):
