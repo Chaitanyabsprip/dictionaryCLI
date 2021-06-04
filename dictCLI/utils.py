@@ -1,7 +1,5 @@
 import sys
 
-from dictCLI import core
-
 
 def get_mode(inp: str, commands: dict) -> str:
     cmd: str = inp[1:]
@@ -19,22 +17,6 @@ def get_mode(inp: str, commands: dict) -> str:
     return mode
 
 
-def search_mode(inp: str) -> None:
-    if inp == '/b':
-        core.bookmark()
-    meaning = core.get_meaning(inp)
-    core.pretty_print(meaning)
-
-
-def flip_mode(inp: str, commands: dict) -> None:
-    if inp in commands["randomize"]:
-        print("bookmarked words randomised")
-    elif inp in commands["next"]:
-        print("next bookmark")
-    elif inp in commands["prev"]:
-        print("prev bookmark")
-
-
 def print_help() -> None:
     help: str = '''
 Modes:
@@ -49,4 +31,4 @@ Commands:
 
 
 def print_usage() -> None:
-    print_help()
+    print_help()  # TODO : temporary
