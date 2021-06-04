@@ -10,12 +10,8 @@ def get_data_dir() -> str:
     }[str(platform)]
 
 
-platform = platform.system()
-cache_dir: str = os.path.join(get_data_dir(), 'word_cache')
-
-
-def cache_meaning(word_json: dict, word: str) -> None:
-    filepath: str = os.path.join(cache_dir, f'{word}.json')
+def cache_meaning(word_json,word):
+    filepath = os.path.join(cache_dir, f'{word}.json')
     with open(filepath, 'w') as f:
         json.dump(word_json, f)
 
@@ -27,3 +23,16 @@ def add_to_history(word: str):
 
 def get_history():
     pass
+
+def get_cached_meaning(word):
+    filepath = os.path.join(cache_dir, f'{word}.json')
+    if os.path.isfile(filepath):
+        with open(filepath, 'r') as f:
+            return json.load(f)
+    else:
+        return None
+            
+platform = platform.system()
+data_dir = get_data_dir()
+cache_dir = os.path.join(data_dir,'word_cache')
+
