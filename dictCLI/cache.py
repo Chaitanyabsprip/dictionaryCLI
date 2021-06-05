@@ -15,14 +15,14 @@ def get_data_dir() -> str:
     return dir_path
 
 
-def cache_meaning(word_json, word):
+def cache_meaning(word_json: dict, word: str) -> None:
     filepath = os.path.join(CACHE_DIR, f'{word}.json')
     with open(filepath, 'w') as f:
         json.dump(word_json, f)
 
 
 def add_to_history(word: str) -> None:
-    with open(os.path.join(get_data_dir(), 'history.txt'), 'a') as f:
+    with open(os.path.join(get_data_dir(), 'history.txt'), 'a+') as f:
         history = f.read().split('\n')[:-1]
         if word in history:
             history.remove(word)
