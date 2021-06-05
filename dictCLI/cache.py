@@ -8,9 +8,6 @@ def get_data_dir() -> str:
         'Windows': os.path.join(os.environ.get('LOCALAPPDATA', ''), 'dictCLI'),
         'Linux': os.path.join(os.environ.get('HOME', ''), '.cache', 'dictCLI'),
     }[str(platform)]
-    if not os.path.exists(dir_path):  # TODO: refactor this to setup.py
-        os.mkdir(dir_path)
-        os.mkdir(os.path.join(dir_path, 'word_cache'))
     return dir_path
 
 
