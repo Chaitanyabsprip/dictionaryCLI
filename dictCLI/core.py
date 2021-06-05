@@ -1,8 +1,9 @@
 import os
+from typing import List
 
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI import cache
+from dictCLI import cache, util
 
 PARSER = WiktionaryParser()
 
@@ -35,7 +36,7 @@ def pretty_print(meaning_json: dict) -> None:
 def search_mode(inp: str) -> None:
     # TODO: BOOKMARK
     # if inp == '/b':
-    # bookmark(get_history(-1))
+    bookmark(cache.get_history())
     # return
     meaning = cache.get_cached_meaning(inp)
     if not meaning:
@@ -55,6 +56,8 @@ def flip_mode(inp: str, commands: dict) -> None:
 
 
 def bookmark(word: str) -> None:
-    with open(os.path.join(cache.cache_dir, 'bookmarks.txt'), 'a') as f:
-        f.write(word)
+    with open(os.path.join(cache.cache_dir, 'bookmarks.txt'), 'a+') as f:
+        bookmarks: List[str] = f.read().split('\n')[:-1]
+        if word not in bookmarks:
+            f.write(word)
     print(f'{word} has been bookmarked \n')

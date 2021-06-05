@@ -25,8 +25,8 @@ def add_to_history(word):
         history.write(f'{word} \n')
 
 
-def get_history():
-    pass
+def get_history() -> str:
+    return ''
 
 
 def get_cached_meaning(word):
