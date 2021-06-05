@@ -16,23 +16,22 @@ def get_data_dir() -> str:
 
 
 def cache_meaning(word_json, word):
-    filepath = os.path.join(cache_dir, f'{word}.json')
+    filepath = os.path.join(CACHE_DIR, f'{word}.json')
     with open(filepath, 'w') as f:
         json.dump(word_json, f)
 
 
-def add_to_history(word):
-    with open(os.path.join(get_data_dir(), 'history.txt'), 'a') as history:
-        history.write(
-            f'[{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}] {word}\n')
+def add_to_history(word: str) -> None:
+    with open(os.path.join(get_data_dir(), 'history.txt'), 'a') as f:
+        history = f.read().split('\n')[:-1]
+        if word in history:
+            history.remove(word)
+        f.write(f'[{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}] {word}\n')
 
 
 def get_history(word: str, index: int = -1):
     with open(os.path.join(get_data_dir(), 'history.txt'), 'r') as f:
         history = f.read().split('\n')[:-1]
-
-    for i in range(len(history)):
-        history[i] = history[i].strip()
 
     if word:
         for entry in history:
@@ -41,7 +40,7 @@ def get_history(word: str, index: int = -1):
 
 
 def get_cached_meaning(word):
-    filepath = os.path.join(cache_dir, f'{word}.json')
+    filepath = os.path.join(CACHE_DIR, f'{word}.json')
     if os.path.isfile(filepath):
         with open(filepath, 'r') as f:
             return json.load(f)
@@ -49,4 +48,4 @@ def get_cached_meaning(word):
         return None
 
 
-cache_dir = os.path.join(get_data_dir(), 'word_cache')
+CACHE_DIR = os.path.join(get_data_dir(), 'word_cache')
