@@ -1,6 +1,9 @@
+import os
+from typing import List
+
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI import cache
+from dictCLI import cache, util
 
 PARSER = WiktionaryParser()
 
@@ -9,7 +12,7 @@ def fetch_meaning(word: str) -> dict:
     """
         Returns the meaning of the query `@word`
     """
-    # TODO : raise errors when there are no definitions to for a given word
+    # TODO: raise errors when there are no definitions to for a given word
     return PARSER.fetch(word)[0]
 
 
@@ -33,8 +36,7 @@ def pretty_print(meaning_json: dict) -> None:
 def search_mode(inp: str) -> None:
     # TODO: BOOKMARK
     # if inp == '/b':
-    # bookmark(get_history(-1))
-    # print(f'{inp} has been bookmarked \n')
+    bookmark(cache.get_history())
     # return
     meaning = cache.get_cached_meaning(inp)
     if not meaning:
@@ -53,5 +55,9 @@ def flip_mode(inp: str, commands: dict) -> None:
         print("prev bookmark")
 
 
-def bookmark() -> None:
-    pass
+def bookmark(word: str) -> None:
+    with open(os.path.join(cache.cache_dir, 'bookmarks.txt'), 'a+') as f:
+        bookmarks: List[str] = f.read().split('\n')[:-1]
+        if word not in bookmarks:
+            f.write(word)
+    print(f'{word} has been bookmarked \n')

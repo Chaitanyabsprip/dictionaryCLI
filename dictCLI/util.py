@@ -1,4 +1,5 @@
 import sys
+from typing import List
 
 
 def get_mode(inp: str, commands: dict) -> str:
@@ -32,3 +33,9 @@ Commands:
 
 def print_usage() -> None:
     print_help()  # TODO : temporary
+
+
+def write_list_to_file(word_list: List[str], filepath: str) -> None:
+    with open(filepath, 'w') as f:
+        for string in word_list:
+            f.write(string)
