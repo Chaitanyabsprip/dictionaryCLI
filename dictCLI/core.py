@@ -34,15 +34,14 @@ def pretty_print(meaning_json: dict) -> None:
 
 
 def search_mode(inp: str) -> None:
-    # TODO: BOOKMARK
-    # if inp == '/b':
-    bookmark(cache.get_history())
-    # return
+    if inp == '/b':
+        bookmark(cache.get_history())
+        return
     meaning = cache.get_cached_meaning(inp)
     if not meaning:
         meaning = fetch_meaning(inp)
         cache.cache_meaning(meaning, inp)
-        cache.add_to_history(inp)
+    cache.add_to_history(inp)
     pretty_print(meaning)
 
 
@@ -56,7 +55,7 @@ def flip_mode(inp: str, commands: dict) -> None:
 
 
 def bookmark(word: str) -> None:
-    with open(os.path.join(cache.cache_dir, 'bookmarks.txt'), 'a+') as f:
+    with open(os.path.join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
         bookmarks: List[str] = f.read().split('\n')[:-1]
         if word not in bookmarks:
             f.write(word)

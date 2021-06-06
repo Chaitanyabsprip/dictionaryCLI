@@ -29,7 +29,7 @@ def add_to_history(word: str) -> None:
         f.write(f'[{datetime.now().strftime("%d/%m/%Y %H:%M:%S")}] {word}\n')
 
 
-def get_history(word: str, index: int = -1):
+def get_history(word: str = None, index: int = -1):
     with open(os.path.join(get_data_dir(), 'history.txt'), 'r') as f:
         history = f.read().split('\n')[:-1]
 
