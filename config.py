@@ -7,8 +7,8 @@ CONFIG = {
         "flip": ['f', 'flip'],
         "inflip": {
             "randomize": ['r', 'random'],
-            "next": ['', 'l'],
-            "prev": ['p', 'k']
+            "next": ['n', 'l', ''],
+            "prev": ['p', 'k', '.']
         }
     }
 }

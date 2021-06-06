@@ -6,7 +6,7 @@ from dictCLI import cache, core
 
 class TestEnglish(unittest.TestCase):
     def setUp(self) -> None:
-        self.result = core.fetch_meaning('hello')
+        self.result = core._fetch_meaning('hello')
         with open('test/fixtures/hello.json') as f:
             self.hello_meaning = json.load(f)[0]
 

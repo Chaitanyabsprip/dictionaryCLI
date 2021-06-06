@@ -33,10 +33,18 @@ def get_history(word: str = None, index: int = -1):
     with open(os.path.join(get_data_dir(), 'history.txt'), 'r') as f:
         history = f.read().split('\n')[:-1]
 
+    if index == 0:
+        return history
+
     if word:
         for entry in history:
             if word in entry and len(entry) == (len(word) + 22): return entry
     return history[index][22:]
+
+
+def get_bookmarks() -> list:
+    with open(os.path.join(get_data_dir(), 'bookmarks.txt')) as f:
+        return f.read().split('\n')[:-1]
 
 
 def get_cached_meaning(word):
