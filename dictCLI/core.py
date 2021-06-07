@@ -47,7 +47,7 @@ def search_mode(inp: str) -> None:
             bookmark(cache.get_history())
         except FileNotFoundError:
             print("No words bookmarked yet")
-        else:
+        except:
             print("An error occured")
             sys.exit(1)
         return
