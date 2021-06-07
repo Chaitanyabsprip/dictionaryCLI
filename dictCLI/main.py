@@ -1,5 +1,6 @@
 #! /usr/bin/python3
-# TODO : cross-platform she-bang!
+
+from pynput import keyboard
 
 from config import CONFIG
 from dictCLI import core, util
