@@ -2,27 +2,27 @@
 # TODO : cross-platform she-bang!
 
 from config import CONFIG
-from dictCLI import core, util
+from dictCLI.core import flip_mode, pretty_print, search_mode
+from dictCLI.util import get_mode, print_usage
 
 
 def main() -> None:
-    commands: dict = CONFIG["commands"]
-    mode = "search"
+    commands, mode = CONFIG["commands"], "search"
+    print_usage()
 
     while (True):
         print(f"{mode} >", end=" ")
         inp: str = input()
         if len(inp) > 0 and inp[0] == ':':
-            mode: str = util.get_mode(inp, commands)
+            mode: str = get_mode(inp)
         elif mode == "search":
-            core.search_mode(inp)
+            pretty_print(search_mode(inp))
         elif mode == "flip":
-            core.flip_mode(inp, commands["inflip"])
+            flip_mode(inp, commands["inflip"])
         else:
             print("Invalid query or command")
-            util.print_usage()
+            print_usage()
 
 
 if __name__ == "__main__":
-    util.print_usage()
     main()

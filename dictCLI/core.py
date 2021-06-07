@@ -1,9 +1,10 @@
-import os
+from os.path import join
 from typing import List
 
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI import cache, util
+from dictCLI.cache import (add_to_history, cache_meaning, get_cached_meaning,
+                           get_data_dir, get_history)
 
 PARSER = WiktionaryParser()
 
@@ -12,8 +13,9 @@ def fetch_meaning(word: str) -> dict:
     """
         Returns the meaning of the query `@word`
     """
-    # TODO: raise errors when there are no definitions to for a given word
-    return PARSER.fetch(word)[0]
+    meaning = PARSER.fetch(word)[0]
+    if len(meaning['definitions']) == 0: return {}
+    return meaning
 
 
 def pretty_print(meaning_json: dict) -> None:
@@ -29,20 +31,21 @@ def pretty_print(meaning_json: dict) -> None:
 
         for related_words in definition['relatedWords']:
             print(related_words['relationshipType'])
-            for words in related_words['words']:
-                pass
+            for word in related_words['words']:
+                print(word)
 
 
-def search_mode(inp: str) -> None:
+def search_mode(inp: str):
     if inp == '/b':
-        bookmark(cache.get_history())
-        return
-    meaning = cache.get_cached_meaning(inp)
-    if not meaning:
+        bookmark(get_history())
+        return {}
+    try:
+        meaning = get_cached_meaning(inp)
+    except FileNotFoundError:
         meaning = fetch_meaning(inp)
-        cache.cache_meaning(meaning, inp)
-    cache.add_to_history(inp)
-    pretty_print(meaning)
+        cache_meaning(meaning, inp)
+    add_to_history(inp)
+    return meaning
 
 
 def flip_mode(inp: str, commands: dict) -> None:
@@ -55,7 +58,7 @@ def flip_mode(inp: str, commands: dict) -> None:
 
 
 def bookmark(word: str) -> None:
-    with open(os.path.join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
+    with open(join(get_data_dir(), 'bookmarks.txt'), 'a+') as f:
         bookmarks: List[str] = f.read().split('\n')[:-1]
         if word not in bookmarks:
             f.write(word)

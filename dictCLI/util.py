@@ -1,14 +1,17 @@
-import sys
+from sys import exit
 from typing import List
 
+from config import CONFIG
 
-def get_mode(inp: str, commands: dict) -> str:
+
+def get_mode(inp: str) -> str:
+    commands = CONFIG["commands"]
     cmd: str = inp[1:]
     mode: str = "search"
     if cmd in commands["help"]:
         print_help()
     elif cmd in commands["quit"]:
-        sys.exit(1)
+        exit(1)
     elif cmd in commands["search"]:
         mode = "search"
     elif cmd in commands["flip"]:

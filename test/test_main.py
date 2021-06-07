@@ -1,23 +1,23 @@
-import unittest
+from unittest import TestCase, main
 
 from config import CONFIG
-from dictCLI import util
+from dictCLI.util import get_mode
 
 
-class TestModes(unittest.TestCase):
+class TestModes(TestCase):
     def setUp(self) -> None:
         self.commands: dict = CONFIG["commands"]
-        self.mode_search1 = util.get_mode(':s', self.commands)
-        self.mode_search2 = util.get_mode(':search', self.commands)
-        self.mode_flip1 = util.get_mode(':f', self.commands)
-        self.mode_flip2 = util.get_mode(':flip', self.commands)
+        self.mode_search1 = get_mode(':s')
+        self.mode_search2 = get_mode(':search')
+        self.mode_flip1 = get_mode(':f')
+        self.mode_flip2 = get_mode(':flip')
 
     def test_quit(self):
         with self.assertRaises(SystemExit) as cm:
-            util.get_mode(':q', self.commands)
+            get_mode(':q')
         self.assertEqual(cm.exception.code, 1)
         with self.assertRaises(SystemExit) as cm:
-            util.get_mode(':quit', self.commands)
+            get_mode(':quit')
         self.assertEqual(cm.exception.code, 1)
 
     def test_search(self):
@@ -30,4 +30,4 @@ class TestModes(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()
