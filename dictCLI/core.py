@@ -41,7 +41,10 @@ def pretty_print(meaning_json: dict) -> None:
 
 def search_mode(inp: str) -> None:
     if inp == '/b':
-        bookmark(cache.get_history())
+        try:
+            bookmark(cache.get_history())
+        catch e:
+            print("No words bookmarked yet")
         return
     cache.add_to_history(inp)
     pretty_print(get_meaning(inp))
