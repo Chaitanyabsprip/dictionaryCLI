@@ -1,19 +1,27 @@
-import os
-from typing import List
+import sys
 
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI import cache, util
+from dictCLI import cache
+from dictCLI.bookmarks import Bookmarks, bookmark
 
 PARSER = WiktionaryParser()
 
 
-def fetch_meaning(word: str) -> dict:
+def _fetch_meaning(word: str) -> dict:
     """
-        Returns the meaning of the query `@word`
+        Returns the meaning of the query `@word` from API
     """
     # TODO: raise errors when there are no definitions to for a given word
     return PARSER.fetch(word)[0]
+
+
+def get_meaning(word: str):
+    meaning = cache.get_cached_meaning(word)
+    if not meaning:
+        meaning = _fetch_meaning(word)
+        cache.cache_meaning(meaning, word)
+    return meaning
 
 
 def pretty_print(meaning_json: dict) -> None:
@@ -35,28 +43,31 @@ def pretty_print(meaning_json: dict) -> None:
 
 def search_mode(inp: str) -> None:
     if inp == '/b':
-        bookmark(cache.get_history())
+        try:
+            bookmark(cache.get_history())
+        except FileNotFoundError:
+            print("No words bookmarked yet")
+        except:
+            print("An error occured")
+            sys.exit(1)
         return
-    meaning = cache.get_cached_meaning(inp)
-    if not meaning:
-        meaning = fetch_meaning(inp)
-        cache.cache_meaning(meaning, inp)
     cache.add_to_history(inp)
-    pretty_print(meaning)
+    pretty_print(get_meaning(inp))
 
 
 def flip_mode(inp: str, commands: dict) -> None:
+    # !FIXME: calling get_bookmarks() each time an input is given
+    bookmarks = Bookmarks()
     if inp in commands["randomize"]:
-        print("bookmarked words randomised")
+        bookmarks.randomize()
+        print("randomized")
     elif inp in commands["next"]:
-        print("next bookmark")
+        word = bookmarks.next()
+        print(word)
+        pretty_print(get_meaning(word))
     elif inp in commands["prev"]:
-        print("prev bookmark")
-
-
-def bookmark(word: str) -> None:
-    with open(os.path.join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
-        bookmarks: List[str] = f.read().split('\n')[:-1]
-        if word not in bookmarks:
-            f.write(word)
-    print(f'{word} has been bookmarked \n')
+        word = bookmarks.prev()
+        print(word)
+        pretty_print(get_meaning(word))
+    print(bookmarks.current)
+    print(len(bookmarks.words))
