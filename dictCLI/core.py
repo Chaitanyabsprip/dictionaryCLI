@@ -1,3 +1,5 @@
+import sys
+
 from wiktionaryparser import WiktionaryParser
 
 from dictCLI import cache
@@ -43,8 +45,11 @@ def search_mode(inp: str) -> None:
     if inp == '/b':
         try:
             bookmark(cache.get_history())
-        catch e:
+        except FileNotFoundError:
             print("No words bookmarked yet")
+        else:
+            print("An error occured")
+            sys.exit(1)
         return
     cache.add_to_history(inp)
     pretty_print(get_meaning(inp))
