@@ -1,4 +1,4 @@
-import os
+from os.path import join
 from random import shuffle
 from typing import List
 
@@ -35,7 +35,7 @@ class Bookmarks:
 
 
 def bookmark(word) -> None:
-    with open(os.path.join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
+    with open(join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
         bookmarks: List[str] = f.read().split('\n')[:-1]
         if word not in bookmarks:
             f.write(f'{word}\n')
