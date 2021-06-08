@@ -1,10 +1,12 @@
 # DictionaryCLI
 
-A command line dictionary that allows you to bookmark words and easily flip through them.
+A command line dictionary that allows you to bookmark words and easily flip
+through them.
 
 ## Features
 
-- **Search Mode**: Get definitions of words or phrases that includes different parts of speeach, synonyms, antonyms and more.
+- **Search Mode**: Get definitions of words or phrases that includes different
+parts of speeach, synonyms, antonyms and more.
 - **Flip Mode**: Bookmark words and access them in the Flip mode.
 - Configurable commands and keybinds.
 - Cross platform
@@ -53,10 +55,8 @@ To run tests, run the following command
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
-
+If you find any bugs or want to see any feature added, issues and PRs are
+welcome!
   
 ## License
 
