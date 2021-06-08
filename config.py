@@ -7,7 +7,7 @@ CONFIG = {
         "flip": ['f', 'flip'],
         "inflip": {
             "randomize": ['r', 'random'],
-            "next": ['n', 'l', ''],
+            "next": ['n', 'j', ''],
             "prev": ['p', 'k', '.']
         }
     }
