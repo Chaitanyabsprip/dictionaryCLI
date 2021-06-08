@@ -1,3 +1,4 @@
+Note: This project is in alpha stage. Bugs and breaking changes are too be expected.
 # DictionaryCLI
 
 A command line dictionary that allows you to bookmark words and easily flip
