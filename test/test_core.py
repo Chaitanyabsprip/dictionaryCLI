@@ -1,13 +1,12 @@
 from json import load
 from unittest import TestCase, main
 
-from dictCLI.cache import cache_meaning
-from dictCLI.core import fetch_meaning
+from dictCLI.core import _fetch_meaning
 
 
 class TestEnglish(TestCase):
     def setUp(self) -> None:
-        self.result = fetch_meaning('hello')
+        self.result = _fetch_meaning('hello')
         with open('test/fixtures/hello.json') as f:
             self.hello_meaning = load(f)[0]
 

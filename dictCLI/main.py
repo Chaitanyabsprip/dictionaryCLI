@@ -1,5 +1,4 @@
-#! /usr/bin/python3
-# TODO : cross-platform she-bang!
+#! /usr/bin/env python
 
 from config import CONFIG
 from dictCLI.core import flip_mode, pretty_print, search_mode

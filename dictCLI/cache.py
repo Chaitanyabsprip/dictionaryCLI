@@ -32,9 +32,17 @@ def add_to_history(word: str) -> None:
 def get_history(word: str = None, index: int = -1):
     with open(join(get_data_dir(), 'history.txt'), 'r') as f:
         history = f.read().split('\n')[:-1]
+    if not index:
+        return history
+
     if word:
         return list(filter(lambda value: value[22:] == word, history))[0][22:]
     return history[index][22:]
+
+
+def get_bookmarks() -> list:
+    with open(join(get_data_dir(), 'bookmarks.txt')) as f:
+        return f.read().split('\n')[:-1]
 
 
 def get_cached_meaning(word):

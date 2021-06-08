@@ -4,12 +4,12 @@ from os.path import isfile, join
 from unittest import TestCase, main
 
 from dictCLI.cache import cache_meaning, get_data_dir
-from dictCLI.core import fetch_meaning
+from dictCLI.core import _fetch_meaning
 
 
 class TestCache(TestCase):
     def setUp(self):
-        self.result = fetch_meaning('hello')
+        self.result = _fetch_meaning('hello')
         self.data_dir = get_data_dir()
 
     def test_get_data_dir(self):
