@@ -1,14 +1,14 @@
-import json
-import unittest
+from json import load
+from unittest import TestCase, main
 
-from dictCLI import cache, core
+from dictCLI.core import _fetch_meaning
 
 
-class TestEnglish(unittest.TestCase):
+class TestEnglish(TestCase):
     def setUp(self) -> None:
-        self.result = core._fetch_meaning('hello')
+        self.result = _fetch_meaning('hello')
         with open('test/fixtures/hello.json') as f:
-            self.hello_meaning = json.load(f)[0]
+            self.hello_meaning = load(f)[0]
 
     def test_response_value(self):
         self.assertEqual(self.result, self.hello_meaning,
@@ -18,13 +18,6 @@ class TestEnglish(unittest.TestCase):
         self.assertEqual(type(self.result), dict,
                          "result from url should be a list of dict")
 
-    def test_cache_meaning(self):
-        file = '/home/chaitanya/.cache/english/favorites.json'
-        cache.cache_meaning(self.result, file)
-        with open(file) as f:
-            cached_meaning = json.load(f)
-        self.assertEqual(self.result, cached_meaning)
-
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

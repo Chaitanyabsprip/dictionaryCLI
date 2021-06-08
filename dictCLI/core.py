@@ -1,9 +1,8 @@
-import sys
-
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI import cache
 from dictCLI.bookmarks import Bookmarks, bookmark
+from dictCLI.cache import (add_to_history, cache_meaning, get_cached_meaning,
+                           get_history)
 
 PARSER = WiktionaryParser()
 
@@ -12,15 +11,16 @@ def _fetch_meaning(word: str) -> dict:
     """
         Returns the meaning of the query `@word` from API
     """
-    # TODO: raise errors when there are no definitions to for a given word
-    return PARSER.fetch(word)[0]
+    meaning = PARSER.fetch(word)[0]
+    if len(meaning['definitions']) == 0: return {}
+    return meaning
 
 
 def get_meaning(word: str):
-    meaning = cache.get_cached_meaning(word)
+    meaning = get_cached_meaning(word)
     if not meaning:
         meaning = _fetch_meaning(word)
-        cache.cache_meaning(meaning, word)
+        cache_meaning(meaning, word)
     return meaning
 
 
@@ -37,22 +37,21 @@ def pretty_print(meaning_json: dict) -> None:
 
         for related_words in definition['relatedWords']:
             print(related_words['relationshipType'])
-            for words in related_words['words']:
-                pass
+            for word in related_words['words']:
+                print(word)
 
 
-def search_mode(inp: str) -> None:
+def search_mode(inp: str):
     if inp == '/b':
-        try:
-            bookmark(cache.get_history())
-        except FileNotFoundError:
-            print("No words bookmarked yet")
-        except:
-            print("An error occured")
-            sys.exit(1)
-        return
-    cache.add_to_history(inp)
-    pretty_print(get_meaning(inp))
+        bookmark(get_history())
+        return {}
+    try:
+        meaning = get_cached_meaning(inp)
+    except FileNotFoundError:
+        meaning = _fetch_meaning(inp)
+        cache_meaning(meaning, inp)
+    add_to_history(inp)
+    return meaning
 
 
 def flip_mode(inp: str, commands: dict) -> None:
@@ -70,4 +69,3 @@ def flip_mode(inp: str, commands: dict) -> None:
         print(word)
         pretty_print(get_meaning(word))
     print(bookmarks.current)
-    print(len(bookmarks.words))
