@@ -56,8 +56,7 @@ To run tests, run the following command
 
 Contributions are always welcome!
 
-If you find any bugs or want to see any feature added, issues and PRs are
-welcome!
+See `contributing.md` for ways to get started.
   
 ## License
 
