@@ -3,8 +3,8 @@ from os import environ
 from os.path import isfile, join
 from unittest import TestCase, main
 
-from dictCLI.cache import cache_meaning, get_data_dir
-from dictCLI.core import _fetch_meaning
+from dictcli.cache import cache_meaning, get_data_dir
+from dictcli.core import _fetch_meaning
 
 
 class TestCache(TestCase):

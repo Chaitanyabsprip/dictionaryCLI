@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
 from config import CONFIG
-from dictCLI.core import flip_mode, pretty_print, search_mode
-from dictCLI.util import get_mode, print_usage
+from dictcli.core import flip_mode, pretty_print, search_mode
+from dictcli.util import get_mode, print_usage
 
 
 def main() -> None:

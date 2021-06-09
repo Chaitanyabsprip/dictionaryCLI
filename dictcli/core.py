@@ -1,7 +1,7 @@
 from wiktionaryparser import WiktionaryParser
 
-from dictCLI.bookmarks import Bookmarks, bookmark
-from dictCLI.cache import (add_to_history, cache_meaning, get_cached_meaning,
+from dictcli.bookmarks import Bookmarks, bookmark
+from dictcli.cache import (add_to_history, cache_meaning, get_cached_meaning,
                            get_history)
 
 PARSER = WiktionaryParser()

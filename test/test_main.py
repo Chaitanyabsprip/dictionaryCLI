@@ -1,7 +1,7 @@
 from unittest import TestCase, main
 
 from config import CONFIG
-from dictCLI.util import get_mode
+from dictcli.util import get_mode
 
 
 class TestModes(TestCase):
