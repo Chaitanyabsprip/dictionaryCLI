@@ -2,7 +2,7 @@ from os.path import join
 from random import shuffle
 from typing import List
 
-from dictCLI import cache
+from dictcli import cache
 
 
 class Bookmarks:

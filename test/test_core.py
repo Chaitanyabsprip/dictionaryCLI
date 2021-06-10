@@ -1,7 +1,7 @@
 from json import load
 from unittest import TestCase, main
 
-from dictCLI.core import _fetch_meaning
+from dictcli.core import _fetch_meaning
 
 
 class TestEnglish(TestCase):
