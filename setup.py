@@ -31,6 +31,6 @@ setup(
     license='MIT',
     py_modules=['config'],
     packages=['dictcli'],
-    # scripts=['main.py'],
-    entry_point={'console_scripts': ['dictcli.main=main:main']},
+    # scripts=['dictcli.main.py'],
+    entry_point={'console_scripts': ['main=dictcli.main:main']},
 )
