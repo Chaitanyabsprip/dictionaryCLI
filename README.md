@@ -1,7 +1,7 @@
-Note: This project is in alpha stage. Bugs and breaking changes are too be expected.
+Note: This project is in alpha stage. Bugs and breaking changes are to be expected.
 # DictionaryCLI
 
-A command line dictionary that allows you to bookmark words and easily flip
+A cross-platform command line dictionary that allows you to bookmark words and easily flip
 through them.
 
 ## Features
@@ -34,9 +34,33 @@ Flip Mode Commands:
 Install dictionaryCLI with python
 
 ```bash 
-  python ./setup.py
+  python setup.py install
 ```
     
+## Configuration
+
+The configuration file is `$HOME/.config/dictCLI/config.yml` if you're on
+Linux and `$LOCALAPPDATA\dictCLI\config.yml` if you're on Windows
+The default config is in the root of the repository and is copied to the
+location mentioned above on the installation of the application.
+
+##### Defaults:
+```yaml
+source: "wiktionary"
+
+commands:
+  help: ["h", "help"]
+
+  quit: ["q", "exit", "quit"]
+
+  search: ["s", "search"]
+
+  flip:
+    cmds: ["f", "flip"]
+    randomize: ["r", "random"]
+    next: ["n", "j", ""]
+    prev: ["p", "k", "."]
+```
 ## Running Tests
 
 To run tests, run the following command
@@ -45,6 +69,12 @@ To run tests, run the following command
   python -m unittest
 ```
 
+## TODO
+
+- [x] Use config.yml
+- [ ] Deployment with CI
+- [ ] Keybinds
+- [ ] Support for multiple APIs
   
 ## Authors
 
