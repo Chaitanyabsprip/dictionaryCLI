@@ -75,6 +75,7 @@ To run tests, run the following command
 - [ ] Deployment with CI
 - [ ] Keybinds
 - [ ] Support for multiple APIs
+- [ ] Colors support for print and prompt
   
 ## Authors
 
