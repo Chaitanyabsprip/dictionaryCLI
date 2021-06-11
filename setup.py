@@ -1,5 +1,6 @@
 import os
 import platform
+from shutil import copy
 
 
 def main():
@@ -10,11 +11,16 @@ def main():
     data_dir_exists = os.path.exists(data_dir_path)
     cache_dir_exists = os.path.exists(os.path.join(data_dir_path,
                                                    'word_cache'))
+    config_dir_exists = os.path.exists(
+        os.path.join(os.environ.get('HOME', ''), '.config', 'dictCLI'))
 
     if not data_dir_exists:
         os.mkdir(data_dir_path)
         if not cache_dir_exists:
             os.mkdir(os.path.join(data_dir_path, 'word_cache'))
+    if not config_dir_exists and str(platform.system()) == "Linux":
+        copy('config.yml',
+             os.path.join(os.environ.get('HOME', ''), '.config', 'dictCLI'))
 
     # XXX: unreadable one line implementation of above nested if statement
     # os.mkdir(data_dir_path)

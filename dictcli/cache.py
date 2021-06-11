@@ -11,7 +11,7 @@ def get_data_dir() -> str:
     dir_path: str = {
         'Windows': join(environ.get('LOCALAPPDATA', ''), 'dictCLI'),
         'Linux': join(environ.get('HOME', ''), '.cache', 'dictCLI'),
-    }[str(system())]
+    }[system()]
     return dir_path
 
 
