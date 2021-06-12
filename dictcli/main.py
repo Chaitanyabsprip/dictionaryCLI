@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+from colorama import Fore, Style, init
+
 from dictcli.config import Config
 from dictcli.core import flip_mode, pretty_print, search_mode
 from dictcli.util import get_mode, print_usage
@@ -7,11 +9,12 @@ from dictcli.util import get_mode, print_usage
 
 def main() -> None:
     Config()
+    init()
     commands, mode = Config.commands, "search"
     print_usage()
 
     while (True):
-        print(f"{mode} >", end=" ")
+        print(f"{Fore.RED}{Style.BRIGHT}{mode}>", end=f"{Style.RESET_ALL} ")
         inp: str = input()
         if len(inp) > 0 and inp[0] == ':':
             mode: str = get_mode(inp)

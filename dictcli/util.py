@@ -25,9 +25,9 @@ def print_help() -> None:
     help: str = '''
 Modes:
     Search        ':search', ':s'
-    Flip          ':flip',   ':f' 
+    Flip          ':flip',   ':f'
 
-Commands: 
+Commands:
     Help          ':help',   ':h'
     Quit          ':quit',   ':q'
     '''
