@@ -14,8 +14,7 @@ def main() -> None:
     print_usage()
 
     while (True):
-        print(f"{Fore.RED}{Style.BRIGHT}{mode} {Fore.YELLOW}>",
-              end=f"{Style.RESET_ALL} ")
+        print(f"{Fore.RED}{Style.BRIGHT}{mode}>", end=f"{Style.RESET_ALL} ")
         inp: str = input()
         if len(inp) > 0 and inp[0] == ':':
             mode: str = get_mode(inp)
