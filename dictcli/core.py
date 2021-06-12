@@ -1,3 +1,4 @@
+from colorama.ansi import Fore, Style
 from wiktionaryparser import WiktionaryParser
 
 from dictcli.bookmarks import Bookmarks, bookmark
@@ -12,7 +13,8 @@ def _fetch_meaning(word: str) -> dict:
         Returns the meaning of the query `@word` from API
     """
     meaning = PARSER.fetch(word)[0]
-    if len(meaning['definitions']) == 0: return {}
+    if len(meaning['definitions']) == 0:
+        return {}
     return meaning
 
 
@@ -28,14 +30,14 @@ def pretty_print(meaning_json: dict) -> None:
     """
         Prints formatted string of the given meaning
     """
+
     if 'defintions' in meaning_json.keys():
         for definition in meaning_json['definitions']:
-            print(f"{'-'*20}")
-            print(f"{definition['partOfSpeech'].title()}:")
-
+           print(f"{'-'*80}")
+           print("{}{}:{}".format(Fore.GREEN, definition['partOfSpeech'].title(),
+                               Style.RESET_ALL))
             for n, meaning in enumerate(definition['text']):
                 print(f"\t{n}. {meaning}")
-
             for related_words in definition['relatedWords']:
                 print(related_words['relationshipType'])
                 for word in related_words['words']:
