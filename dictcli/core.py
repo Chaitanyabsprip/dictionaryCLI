@@ -1,7 +1,7 @@
 from colorama.ansi import Fore, Style
 from wiktionaryparser import WiktionaryParser
 
-from dictcli.bookmarks import Bookmarks, bookmark
+from dictcli.bookmarks import Bookmarks
 from dictcli.cache import (add_to_history, cache_meaning, get_cached_meaning,
                            get_history)
 
@@ -55,9 +55,6 @@ def pretty_print(meaning_json: dict) -> None:
 
 
 def search_mode(inp: str):
-    if inp == '/b':
-        bookmark(get_history())
-        return {}
     try:
         meaning = get_cached_meaning(inp)
     except FileNotFoundError:

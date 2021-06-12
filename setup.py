@@ -1,4 +1,5 @@
 import os
+from os.path import join
 from platform import system
 from shutil import copy
 
@@ -17,6 +18,8 @@ def main():
         os.path.join(os.environ.get('HOME', ''), '.config', 'dictCLI'))
 
     if not data_dir_exists:
+        with open(join(data_dir_path, 'bookmarks.txt'), 'r') as f:
+            f.write('')
         os.mkdir(data_dir_path)
         if not cache_dir_exists:
             os.mkdir(os.path.join(data_dir_path, 'word_cache'))
@@ -44,3 +47,6 @@ def main():
         # scripts=['dictcli.main.py'],
         entry_point={'console_scripts': ['main=dictcli.main:main']},
     )
+
+
+main()
