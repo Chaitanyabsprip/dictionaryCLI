@@ -61,14 +61,6 @@ commands:
     next: ["n", "j", ""]
     prev: ["p", "k", "."]
 ```
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  python -m unittest
-```
-
 ## TODO
 
 - [x] Use config.yml
