@@ -28,17 +28,20 @@ def pretty_print(meaning_json: dict) -> None:
     """
         Prints formatted string of the given meaning
     """
-    for definition in meaning_json['definitions']:
-        print(f"{'-'*20}")
-        print(f"{definition['partOfSpeech'].title()}:")
+    if 'defintions' in meaning_json.keys():
+        for definition in meaning_json['definitions']:
+            print(f"{'-'*20}")
+            print(f"{definition['partOfSpeech'].title()}:")
 
-        for n, meaning in enumerate(definition['text']):
-            print(f"\t{n}. {meaning}")
+            for n, meaning in enumerate(definition['text']):
+                print(f"\t{n}. {meaning}")
 
-        for related_words in definition['relatedWords']:
-            print(related_words['relationshipType'])
-            for word in related_words['words']:
-                print(word)
+            for related_words in definition['relatedWords']:
+                print(related_words['relationshipType'])
+                for word in related_words['words']:
+                    print(word)
+    else:
+        print('No meaning found')
 
 
 def search_mode(inp: str):
