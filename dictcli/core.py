@@ -34,15 +34,22 @@ def pretty_print(meaning_json: dict) -> None:
     if 'definitions' in meaning_json.keys():
         for definition in meaning_json['definitions']:
             print(f"{'-'*80}")
-            print("{}{}:{}".format(Fore.GREEN,
+            print("{}{}:{}".format(Fore.BLUE,
                                    definition['partOfSpeech'].title(),
                                    Style.RESET_ALL))
             for n, meaning in enumerate(definition['text']):
                 print(f"\t{n}. {meaning}")
             for related_words in definition['relatedWords']:
-                print(related_words['relationshipType'])
+                foreground: str
+                if (related_words["relationshipType"] == 'synonyms'):
+                    foreground = Fore.GREEN
+                else:
+                    foreground = Fore.RED
+                print("{}{}{}".format(foreground,
+                                      related_words['relationshipType'],
+                                      Style.RESET_ALL))
                 for word in related_words['words']:
-                    print(word)
+                    print('\t' + word)
     else:
         print('No meaning found')
 
