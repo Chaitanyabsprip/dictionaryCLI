@@ -13,7 +13,8 @@ def _fetch_meaning(word: str) -> dict:
         Returns the meaning of the query `@word` from API
     """
     meaning = PARSER.fetch(word)[0]
-    if len(meaning['definitions']) == 0: return {}
+    if len(meaning['definitions']) == 0:
+        return {}
     return meaning
 
 
@@ -30,10 +31,9 @@ def pretty_print(meaning_json: dict) -> None:
         Prints formatted string of the given meaning
     """
     for definition in meaning_json['definitions']:
-        print(f"{'-'*20}")
-        print(
-            f"{Fore.GREEN}{definition['partOfSpeech'].title()}:{Style.RESET_ALL}"
-        )
+        print(f"{'-'*80}")
+        print("{}{}:{}".format(Fore.GREEN, definition['partOfSpeech'].title(),
+                               Style.RESET_ALL))
 
         for n, meaning in enumerate(definition['text']):
             print(f"\t{n}. {meaning}")
