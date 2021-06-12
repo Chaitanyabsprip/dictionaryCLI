@@ -31,7 +31,7 @@ def pretty_print(meaning_json: dict) -> None:
         Prints formatted string of the given meaning
     """
 
-    if 'defintions' in meaning_json.keys():
+    if 'definitions' in meaning_json.keys():
         for definition in meaning_json['definitions']:
             print(f"{'-'*80}")
             print("{}{}:{}".format(Fore.GREEN,
