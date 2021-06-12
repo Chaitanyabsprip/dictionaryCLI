@@ -1,11 +1,11 @@
 from sys import exit
 from typing import List
 
-from config import CONFIG
+from dictcli.config import Config
 
 
 def get_mode(inp: str) -> str:
-    commands = CONFIG["commands"]
+    commands = Config.commands
     cmd: str = inp[1:]
     mode: str = "search"
     if cmd in commands["help"]:
@@ -14,7 +14,7 @@ def get_mode(inp: str) -> str:
         exit(1)
     elif cmd in commands["search"]:
         mode = "search"
-    elif cmd in commands["flip"]:
+    elif cmd in commands["flip"]["cmd"]:
         mode = "flip"
     else:
         print('Not a valid command')
@@ -25,11 +25,11 @@ def print_help() -> None:
     help: str = '''
 Modes:
     Search        ':search', ':s'
-    Flip          ':flip', ':f' 
+    Flip          ':flip',   ':f' 
 
 Commands: 
-    Help          ':help', ':h'
-    Quit          ':quit', ':q'
+    Help          ':help',   ':h'
+    Quit          ':quit',   ':q'
     '''
     print(help)
 

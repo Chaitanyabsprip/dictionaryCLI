@@ -1,12 +1,13 @@
 #! /usr/bin/env python
 
-from config import CONFIG
+from dictcli.config import Config
 from dictcli.core import flip_mode, pretty_print, search_mode
 from dictcli.util import get_mode, print_usage
 
 
 def main() -> None:
-    commands, mode = CONFIG["commands"], "search"
+    Config()
+    commands, mode = Config.commands, "search"
     print_usage()
 
     while (True):
@@ -17,7 +18,7 @@ def main() -> None:
         elif mode == "search":
             pretty_print(search_mode(inp))
         elif mode == "flip":
-            flip_mode(inp, commands["inflip"])
+            flip_mode(inp, commands["flip"])
         else:
             print("Invalid query or command")
             print_usage()

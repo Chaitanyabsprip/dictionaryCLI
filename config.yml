@@ -1,0 +1,14 @@
+source: "wiktionary"
+
+commands:
+  help: ["h", "help"]
+
+  quit: ["q", "exit", "quit"]
+
+  search: ["s", "search"]
+
+  flip:
+    cmd: ["f", "flip"]
+    randomize: ["r", "random"]
+    next: ["n", "j", ""]
+    prev: ["p", "k", "."]

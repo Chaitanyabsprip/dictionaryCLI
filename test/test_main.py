@@ -1,12 +1,13 @@
 from unittest import TestCase, main
 
-from config import CONFIG
+from dictcli.config import Config
 from dictcli.util import get_mode
 
 
 class TestModes(TestCase):
     def setUp(self) -> None:
-        self.commands: dict = CONFIG["commands"]
+        Config()
+        self.commands: dict = Config.commands
         self.mode_search1 = get_mode(':s')
         self.mode_search2 = get_mode(':search')
         self.mode_flip1 = get_mode(':f')
