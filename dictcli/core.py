@@ -33,9 +33,10 @@ def pretty_print(meaning_json: dict) -> None:
 
     if 'defintions' in meaning_json.keys():
         for definition in meaning_json['definitions']:
-           print(f"{'-'*80}")
-           print("{}{}:{}".format(Fore.GREEN, definition['partOfSpeech'].title(),
-                               Style.RESET_ALL))
+            print(f"{'-'*80}")
+            print("{}{}:{}".format(Fore.GREEN,
+                                   definition['partOfSpeech'].title(),
+                                   Style.RESET_ALL))
             for n, meaning in enumerate(definition['text']):
                 print(f"\t{n}. {meaning}")
             for related_words in definition['relatedWords']:
