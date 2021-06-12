@@ -1,3 +1,4 @@
+from colorama.ansi import Fore, Style
 from wiktionaryparser import WiktionaryParser
 
 from dictcli.bookmarks import Bookmarks, bookmark
@@ -30,7 +31,9 @@ def pretty_print(meaning_json: dict) -> None:
     """
     for definition in meaning_json['definitions']:
         print(f"{'-'*20}")
-        print(f"{definition['partOfSpeech'].title()}:")
+        print(
+            f"{Fore.GREEN}{definition['partOfSpeech'].title()}:{Style.RESET_ALL}"
+        )
 
         for n, meaning in enumerate(definition['text']):
             print(f"\t{n}. {meaning}")
