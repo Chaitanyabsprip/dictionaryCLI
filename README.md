@@ -1,4 +1,4 @@
-Note: This project is in alpha stage. Bugs and breaking changes are to be expected.
+Note: This project is in alpha stage, bugs and breaking changes are too be expected.
 # DictionaryCLI
 
 A cross-platform command line dictionary that allows you to bookmark words and easily flip
@@ -79,8 +79,7 @@ commands:
 
 Contributions are always welcome!
 
-If you find any bugs or want to see any feature added, issues and PRs are
-welcome!
+See `contributing.md` for ways to get started.
   
 ## License
 

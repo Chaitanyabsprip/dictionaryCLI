@@ -8,7 +8,7 @@ commands:
   search: ["s", "search"]
 
   flip:
-    cmds: ["f", "flip"]
+    cmd: ["f", "flip"]
     randomize: ["r", "random"]
     next: ["n", "j", ""]
     prev: ["p", "k", "."]
