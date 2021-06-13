@@ -31,23 +31,35 @@ Flip Mode Commands:
   
 ## Installation 
 
-Install dictionaryCLI with python
+
+1. Install dictcli with python
 
 ```bash 
-  python setup.py install
+python setup.py install
 ```
-    
+
+2. with pip
+
+```bash
+pip install .
+```
+
+3. with make (uses pyinstaller)
+
+```bash
+sudo make install
+```
+
 ## Configuration
 
 The configuration file is `$HOME/.config/dictCLI/config.yml` if you're on
-Linux and `$LOCALAPPDATA\dictCLI\config.yml` if you're on Windows
+Linux and `$LOCALAPPDATA\dictCLI\config.yml` if you're on Windows.
+
 The default config is in the root of the repository and is copied to the
 location mentioned above on the installation of the application.
 
 ##### Defaults:
 ```yaml
-source: "wiktionary"
-
 commands:
   help: ["h", "help"]
 
@@ -64,10 +76,10 @@ commands:
 ## TODO
 
 - [x] Use config.yml
+- [x] Colors support for print and prompt
 - [ ] Deployment with CI
 - [ ] Keybinds
 - [ ] Support for multiple APIs
-- [ ] Colors support for print and prompt
   
 ## Authors
 

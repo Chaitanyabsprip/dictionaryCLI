@@ -21,7 +21,7 @@ class Config:
             }
             with open("config.yml", 'r') as f:
                 config = load(f, Loader=FullLoader)
-                cls.source = config['source']
+                # cls.source = config['source']
                 cls.commands = config['commands']
 
         # return cls.__instance
