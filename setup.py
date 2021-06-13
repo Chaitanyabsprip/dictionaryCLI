@@ -36,7 +36,7 @@ def main():
         longdesc = f.read()
 
     setup(
-        name='dictionary',
+        name='dictcli',
         url='https://www.github.com/Chaitanyabsprip/dictionaryCLI',
         author='Chaitanya Sharma',
         author_email='chaitanyasanjeevsharma@gmail.com',
