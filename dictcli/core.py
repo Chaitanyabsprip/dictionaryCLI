@@ -2,8 +2,8 @@ from colorama.ansi import Fore, Style
 from wiktionaryparser import WiktionaryParser
 
 from dictcli.bookmarks import Bookmarks
-from dictcli.cache import (add_to_history, cache_meaning, get_cached_meaning,
-                           get_history)
+from dictcli.cache import add_to_history, cache_meaning, get_cached_meaning
+from dictcli.util import is_connected
 
 PARSER = WiktionaryParser()
 
@@ -12,7 +12,10 @@ def _fetch_meaning(word: str) -> dict:
     """
         Returns the meaning of the query `@word` from API
     """
-    meaning = PARSER.fetch(word)[0]
+    if is_connected():
+        meaning = PARSER.fetch(word)[0]
+    else:
+        raise ConnectionError
     if len(meaning['definitions']) == 0:
         return {}
     return meaning

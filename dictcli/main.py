@@ -12,8 +12,8 @@ from dictcli.util import get_mode, print_usage
 def main() -> None:
     Config()
     init()
-    commands, mode = Config.commands, "search"
     print_usage()
+    commands, mode = Config.commands, "search"
 
     while (True):
         print(f"{Fore.YELLOW}{Style.BRIGHT}{mode}>", end=f"{Style.RESET_ALL} ")
@@ -24,7 +24,10 @@ def main() -> None:
         if len(inp) > 0 and inp[0] == ':':
             mode: str = get_mode(inp)
         elif mode == "search":
-            pretty_print(search_mode(inp))
+            try:
+                pretty_print(search_mode(inp))
+            except ConnectionError:
+                print('Cannot connect to network')
         elif mode == "flip":
             flip_mode(inp, commands["flip"])
         else:
