@@ -1,6 +1,5 @@
 from os.path import join
 from random import shuffle
-from typing import List
 
 from dictcli import cache
 
@@ -12,7 +11,6 @@ class Bookmarks:
         if cls.__instance is None:
             cls.__instance = super(Bookmarks, cls).__new__(cls)
             cls.words: list = cache.get_bookmarks()
-            assert (len(cls.words) > 0)
             cls.current: int = -1
         return cls.__instance
 
@@ -33,10 +31,8 @@ class Bookmarks:
     def randomize(self):
         shuffle(self.words)
 
-
-def bookmark(word) -> None:
-    with open(join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
-        bookmarks: List[str] = f.read().split('\n')[:-1]
-        if word not in bookmarks:
-            f.write(f'{word}\n')
-    print(f'{word} bookmarked \n')
+    def bookmark(self, word) -> None:
+        if word not in self.words:
+            with open(join(cache.get_data_dir(), 'bookmarks.txt'), 'a+') as f:
+                f.write(f'{word}\n')
+        print(f'{word} bookmarked \n')
