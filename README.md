@@ -53,8 +53,7 @@ sudo make install
 ## Configuration
 
 The configuration file is `$HOME/.config/dictCLI/config.yml` if you're on
-Linux and
-`$LOCALAPPDATA\dictCLI\config.yml` if you're on Windows.
+Linux and `%LOCALAPPDATA%\dictCLI\config.yml` if you're on Windows.
 
 The default config is in the root of the repository and is copied to the
 location mentioned above on the installation of the application.
