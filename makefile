@@ -3,7 +3,7 @@ CACHE_DIR = "${HOME}/.cache/dictCLI"
 CONFIG_DIR = "${HOME}/.config/dictCLI"
 
 
-.PHONY = help setup clean
+.PHONY = help setup clean test
 
 .DEFAULT_GOAL = help
 
@@ -18,9 +18,12 @@ help:
 clean:
 	rm -rf dictVenv
 
-install:
+install: setup
 	pip install pyinstaller
-	sudo pyinstaller dictcli/main.py -n dictcli --onefile 
+	pyinstaller dictcli/main.py -n dictcli --onefile && cp dist/dictcli /usr/local/bin/dictcli || rm -rf build dist dictcli.spec
+	@echo "cleaning up"
+	pip uninstall pyinstaller
+	rm -rf build dictcli.spec
 
 run: setup
 	PYTHONPATH='.' ${PYTHON} dictcli/main.py
@@ -33,3 +36,7 @@ setup:
 
 test: setup
 	${PYTHON} -m unittest
+
+uninstall:
+	rm -rf /usr/local/bin/dictcli build dist dictcli.spec
+

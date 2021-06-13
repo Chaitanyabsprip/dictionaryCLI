@@ -1,5 +1,3 @@
-source: "wiktionary"
-
 commands:
   help: ["h", "help"]
 
