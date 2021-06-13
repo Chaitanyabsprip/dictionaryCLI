@@ -31,6 +31,10 @@ def main():
     # os.mkdir(data_dir_path)
     # (os.mkdir(os.path.join(data_dir_path, 'word_cache'))
     #  if cache_dir_exists else None) if not data_dir_exists else None
+
+    with open('README.md', 'r') as f:
+        longdesc = f.read()
+
     setup(
         name='dictionary',
         url='https://www.github.com/Chaitanyabsprip/dictionaryCLI',
@@ -38,14 +42,15 @@ def main():
         author_email='chaitanyasanjeevsharma@gmail.com',
         description='A command line dictionary that allows you to bookmark\
         words and easily flip through them.',
-        long_description='',
+        long_description=longdesc,
         use_scm_version=True,
         setup_requires=['setuptools_scm'],
         license='MIT',
-        py_modules=['config'],
+        keywords=['Dictionary'],
+        # data_files=[('readme', 'README.md'), ('requirements', 'requirements.txt')],
         packages=['dictcli'],
         # scripts=['dictcli.main.py'],
-        entry_point={'console_scripts': ['main=dictcli.main:main']},
+        entry_points={'console_scripts': ['dictcli=dictcli.main:main']},
     )
 
 
