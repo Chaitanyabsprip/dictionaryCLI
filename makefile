@@ -15,16 +15,21 @@ help:
 	@echo "To clean the project type make clean"
 	@echo "------------------------------------"
 
+clean:
+	rm -rf dictVenv
+
+install:
+	pip install pyinstaller
+	sudo pyinstaller dictcli/main.py -n dictcli --onefile 
+
+run: setup
+	PYTHONPATH='.' ${PYTHON} dictcli/main.py
+
 setup:
 	@[ -d "dictVenv" ] || virtualenv dictVenv
+	@pip install -r requirements.txt
 	@[ -d ${CACHE_DIR} ] || (mkdir "${CACHE_DIR}" && mkdir "${CACHE_DIR}/word_cache")
 	@[ -d ${CONFIG_DIR} ] || (mkdir "${CONFIG_DIR}" && cp config.yml "${CONFIG_DIR}/config.yml")
 
 test: setup
 	${PYTHON} -m unittest
-	
-run: setup
-	PYTHONPATH='.' ${PYTHON} dictcli/main.py
-
-clean:
-	rm -rf dictVenv

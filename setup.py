@@ -48,8 +48,7 @@ def main():
         license='MIT',
         keywords=['Dictionary'],
         # data_files=[('readme', 'README.md'), ('requirements', 'requirements.txt')],
-        packages=['dictcli'],
-        # scripts=['dictcli.main.py'],
+        packages=['dictcli', 'test'],
         entry_points={'console_scripts': ['dictcli=dictcli.main:main']},
     )
 
