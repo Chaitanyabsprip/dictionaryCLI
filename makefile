@@ -16,27 +16,26 @@ help:
 	@echo "------------------------------------"
 
 clean:
-	rm -rf dictVenv
+	@rm -rf dictVenv
 
 install: setup
-	pip install pyinstaller
-	pyinstaller dictcli/main.py -n dictcli --onefile && cp dist/dictcli /usr/local/bin/dictcli || rm -rf build dist dictcli.spec
+	@/usr/bin/env pip3 install pyinstaller
+	@pyinstaller dictcli/main.py -n dictcli --onefile && cp dist/dictcli /usr/local/bin/dictcli || rm -rf build dist dictcli.spec
 	@echo "cleaning up"
-	pip uninstall pyinstaller
-	rm -rf build dictcli.spec
+	@/usr/bin/env pip3 uninstall pyinstaller
+	@rm -rf build dictcli.spec
 
 run: setup
 	PYTHONPATH='.' ${PYTHON} dictcli/main.py
 
 setup:
 	@[ -d "dictVenv" ] || virtualenv dictVenv
-	@pip install -r requirements.txt
+	@/usr/bin/env pip3 install -r requirements.txt
 	@[ -d ${CACHE_DIR} ] || (mkdir "${CACHE_DIR}" && mkdir "${CACHE_DIR}/word_cache")
 	@[ -d ${CONFIG_DIR} ] || (mkdir "${CONFIG_DIR}" && cp config.yml "${CONFIG_DIR}/config.yml")
 
 test: setup
-	${PYTHON} -m unittest
+	@${PYTHON} -m unittest
 
 uninstall:
-	rm -rf /usr/local/bin/dictcli build dist dictcli.spec
-
+	@rm -rf /usr/local/bin/dictcli build dist dictcli.spec
