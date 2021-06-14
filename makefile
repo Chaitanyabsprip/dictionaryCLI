@@ -28,8 +28,13 @@ install: setup
 run: setup
 	PYTHONPATH='.' ${PYTHON} dictcli/main.py
 
-setup:
+dev-setup:
 	@[ -d "dictVenv" ] || virtualenv dictVenv
+	@/usr/bin/env pip3 install -r requirements.txt
+	@[ -d ${CACHE_DIR} ] || (mkdir "${CACHE_DIR}" && mkdir "${CACHE_DIR}/word_cache")
+	@[ -d ${CONFIG_DIR} ] || (mkdir "${CONFIG_DIR}" && cp config.yml "${CONFIG_DIR}/config.yml")
+
+setup:
 	@/usr/bin/env pip3 install -r requirements.txt
 	@[ -d ${CACHE_DIR} ] || (mkdir "${CACHE_DIR}" && mkdir "${CACHE_DIR}/word_cache")
 	@[ -d ${CONFIG_DIR} ] || (mkdir "${CONFIG_DIR}" && cp config.yml "${CONFIG_DIR}/config.yml")
