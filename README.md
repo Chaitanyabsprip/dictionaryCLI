@@ -32,6 +32,9 @@ Flip Mode Commands:
     Prev          '.', 'p', 'k'    
 ```
 
+![Screenshot:2021-06-15](https://user-images.githubusercontent.com/55058351/122082231-73f8f100-ce1d-11eb-824a-058d2c007270.png)
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
