@@ -55,6 +55,7 @@ def pretty_print(meaning_json: dict) -> None:
                     print('\t' + word)
     else:
         print('No meaning found')
+    print('\n\n')
 
 
 def search_mode(inp: str):
