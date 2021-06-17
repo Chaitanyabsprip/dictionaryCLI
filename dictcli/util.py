@@ -25,7 +25,7 @@ def get_mode(inp: str) -> str:
     if cmd in commands["help"]:
         print_help()
     elif cmd in commands["quit"]:
-        exit(1)
+        exit(0)
     elif cmd in commands["search"]:
         mode = "search"
     elif cmd in commands["flip"]["cmd"]:
