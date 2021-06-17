@@ -11,7 +11,7 @@ def is_connected():
         # reachable
         sock = socket.create_connection(("www.google.com", 80))
         if sock is not None:
-            sock.close
+            sock.close()
         return True
     except OSError:
         pass

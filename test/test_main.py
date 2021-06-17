@@ -16,10 +16,10 @@ class TestModes(TestCase):
     def test_quit(self):
         with self.assertRaises(SystemExit) as cm:
             get_mode(':q')
-        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.code, 0)
         with self.assertRaises(SystemExit) as cm:
             get_mode(':quit')
-        self.assertEqual(cm.exception.code, 1)
+        self.assertEqual(cm.exception.code, 0)
 
     def test_search(self):
         self.assertEqual(self.mode_search1, 'search')
