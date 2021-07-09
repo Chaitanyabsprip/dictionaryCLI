@@ -10,18 +10,21 @@ PARSER = WiktionaryParser()
 
 def _fetch_meaning(word: str) -> dict:
     """
-        Returns the meaning of the query `@word` from API
+        Retreive the meaning of the query `@word` from API
     """
-    if is_connected():
-        meaning = PARSER.fetch(word)[0]
-    else:
+    if not is_connected():
         raise ConnectionError
-    if len(meaning['definitions']) == 0:
-        return {}
-    return meaning
+
+    meaning = PARSER.fetch(word)
+    if meaning:
+        meaning = meaning[0]
+        if len(meaning['definitions']) != 0:
+            return meaning
+    return {}
 
 
 def get_meaning(word: str):
+    word = word.lower()
     meaning = get_cached_meaning(word)
     if not meaning:
         meaning = _fetch_meaning(word)
@@ -33,7 +36,6 @@ def pretty_print(meaning_json: dict) -> None:
     """
         Prints formatted string of the given meaning
     """
-
     if 'definitions' in meaning_json.keys():
         for definition in meaning_json['definitions']:
             print(f"{'-'*80}")
@@ -55,15 +57,10 @@ def pretty_print(meaning_json: dict) -> None:
                     print('\t' + word)
     else:
         print('No meaning found')
-    print('\n\n')
 
 
 def search_mode(inp: str):
-    try:
-        meaning = get_cached_meaning(inp)
-    except FileNotFoundError:
-        meaning = _fetch_meaning(inp)
-        cache_meaning(meaning, inp)
+    meaning = get_meaning(inp)
     add_to_history(inp)
     return meaning
 

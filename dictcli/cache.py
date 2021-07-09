@@ -1,9 +1,11 @@
 from datetime import datetime
-from errno import ENOENT
+# from errno import ENOENT
 from json import dump as json_dump
 from json import load
-from os import environ, strerror
-from os.path import isfile, join
+# from os import environ, strerror
+from os import environ
+# from os.path import isfile, join
+from os.path import join
 from platform import system
 
 
@@ -47,11 +49,11 @@ def get_bookmarks() -> list:
 
 def get_cached_meaning(word):
     filepath = join(CACHE_DIR, f'{word}.json')
-    if isfile(filepath):
+    try:
         with open(filepath, 'r') as f:
             return load(f)
-    else:
-        raise FileNotFoundError(ENOENT, strerror(ENOENT), f"{word}.json")
+    except FileNotFoundError:
+        return None
 
 
 CACHE_DIR = join(get_data_dir(), 'word_cache')
